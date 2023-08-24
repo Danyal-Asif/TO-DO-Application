@@ -81,6 +81,7 @@ public class TaskServlet extends HttpServlet {
 	private void listTask(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException,SQLException{
 		List<Task> list=taskDao.selectAllTasks();
 		request.setAttribute("listTask", list);
+		request.setAttribute("date", LocalDate.now());
 		RequestDispatcher dispatcher=request.getRequestDispatcher("task-list.jsp");
 		dispatcher.forward(request, response);
 	}

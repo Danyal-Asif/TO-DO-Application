@@ -61,15 +61,41 @@
                                     <td>
                                         <c:out value="${task.description}" />
                                     </td>
-                                    <td>
+                                    
+                                    
+                                    <c:if test="${task.status=='COMPLETED'}">
+                            		<td>
                                         <c:out value="${task.due_date}" />
                                     </td>
+                        			</c:if>
+                                    
+                                    <c:if test="${task.status!='COMPLETED'}">
+                                    <c:if test="${task.due_date<=date}">
+                            		<td style="color:red;">
+                                        <c:out value="${task.due_date}" />
+                                    </td>
+                        			</c:if>
+                        			
+                        			<c:if test="${task.due_date>date}">
+                            		<td style="color:green;">
+                                        <c:out value="${task.due_date}" />
+                                    </td>
+                        			</c:if>
+                        			</c:if>
                                     <td>
                                         <c:out value="${task.priority}" />
                                     </td>
-                                    <td>
+                                    <c:if test="${task.status=='COMPLETED'}">
+                            		<td style="color: green;">
+                                        <c:out value="${task.status}" /> &#x2713;
+                                    </td>
+                        			</c:if>
+                        			
+                                    <c:if test="${task.status!='COMPLETED'}">
+                            		<td>
                                         <c:out value="${task.status}" />
                                     </td>
+                        			</c:if>
                                     <td><a href="edit?id=<c:out value='${task.id}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=<c:out value='${task.id}' />">Delete</a></td>
                                 </tr>
                             </c:forEach>
